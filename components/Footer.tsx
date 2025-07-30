@@ -94,7 +94,7 @@ export default function Footer() {
           <div className="border-t border-green-700/30 mt-8 pt-6 text-center">
             <div className="bg-green-800/30 backdrop-blur-sm rounded-lg p-4 border border-green-600/20">
               <p className="text-xs text-green-100">
-                &copy; 2024 AyurVeda Naturals. All rights reserved.
+                &copy; 2024 Gaurav Ayurveda Naturals Pvt. Ltd. All rights reserved.
               </p>
             </div>
           </div>
