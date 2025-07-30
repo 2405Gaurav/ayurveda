@@ -45,7 +45,7 @@ export default function Navbar() {
             </div>
             <div className="transition-transform duration-300 group-hover:translate-x-1">
               <h1 className="text-2xl font-bold bg-gradient-to-r from-green-600 via-emerald-600 to-green-800 bg-clip-text text-transparent group-hover:from-green-700 group-hover:via-emerald-700 group-hover:to-green-900 transition-all duration-300">
-                AyurVeda Naturals
+                Gaurav Ayurveda Naturals
               </h1>
               <p className="text-xs text-green-600 font-medium tracking-wide group-hover:text-green-700 transition-colors duration-300">
                 Ancient Healing • Modern Science • Trusted Wellness
