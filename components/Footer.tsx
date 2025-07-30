@@ -22,7 +22,7 @@ export default function Footer() {
                 </div>
                 <div>
                   <h3 className="text-xl font-bold bg-gradient-to-r from-green-300 to-emerald-300 bg-clip-text text-transparent">
-                    AyurVeda Naturals
+                    Gaurav Ayurveda Naturals
                   </h3>
                   <p className="text-xs text-green-200">Ancient Healing • Modern Science</p>
                 </div>
@@ -81,9 +81,9 @@ export default function Footer() {
                   </div>
                 </div>
                 <div className="space-y-1">
-                  <p className="text-green-100 text-xs font-medium">AyurVeda Naturals Pvt. Ltd.</p>
+                  <p className="text-green-100 text-xs font-medium">Gaurav Ayurveda Naturals Pvt. Ltd.</p>
                   <p className="text-green-200 text-xs opacity-80">
-                    Certified by Ministry of AYUSH
+                    Certified by Ministry of Gaurav
                   </p>
                 </div>
               </div>
