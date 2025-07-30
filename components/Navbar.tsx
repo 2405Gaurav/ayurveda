@@ -28,7 +28,7 @@ export default function Navbar() {
             </div>
           </div>
           <div className="flex items-center space-x-4">
-            <span className="font-bold text-green-800 tracking-wide text-sm">AyurVeda Naturals Pvt. Ltd.</span>
+            <span className="font-bold text-green-800 tracking-wide text-sm">Gaurav Ayurveda Naturals Pvt. Ltd.</span>
             <div className="flex items-center space-x-2 bg-gradient-to-r from-green-100 to-emerald-100 px-3 py-1 rounded-full border border-green-200 hover:from-green-200 hover:to-emerald-200 transition-all duration-300 cursor-pointer group">
               <Phone className="h-3 w-3 text-green-600 group-hover:animate-pulse" />
               <span className="font-bold text-green-800 group-hover:text-green-900 transition-colors text-xs">1800-120-AYUR</span>
