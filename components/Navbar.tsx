@@ -5,7 +5,7 @@ import { Menu, X, Leaf, Search, MapPin, Truck, ShoppingBag, User, Heart, Phone, 
 
 const RasayanNavbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState(null);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
   const mainNavItems = [
     {
@@ -160,7 +160,7 @@ const RasayanNavbar = () => {
                 {item.hasDropdown && (
                   <div className={`absolute top-full left-0 mt-1 w-56 bg-white rounded-lg shadow-xl border border-teal-100 py-2 transition-all duration-300 ${activeDropdown === item.name ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
                     }`}>
-                    {item.items.map((dropdownItem, idx) => (
+                    {item.items && item.items.map((dropdownItem, idx) => (
                       <a
                         key={dropdownItem}
                         href="#"
