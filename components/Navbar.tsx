@@ -1,182 +1,230 @@
 'use client';
 
-import { useState } from 'react';
-import { Search, ShoppingCart, MapPin, Truck, Package, Phone, Leaf, User, Heart, Star } from 'lucide-react';
+import React, { useState } from 'react';
+import { Menu, X, Leaf, Search, MapPin, Truck, ShoppingBag, User, Heart, Phone, ChevronDown } from 'lucide-react';
 
-export default function Navbar() {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [cartCount, setCartCount] = useState(3);
-  const [isSearchFocused, setIsSearchFocused] = useState(false);
+const RasayanNavbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState(null);
+
+  const mainNavItems = [
+    {
+      name: "About Rasayan Naturals",
+      hasDropdown: true,
+      items: ["Our Story", "Mission & Vision", "Quality Assurance", "Certifications", "Research & Development"]
+    },
+    {
+      name: "About Ayurveda",
+      hasDropdown: true,
+      items: ["What is Ayurveda?", "Doshas & Constitution", "Ayurvedic Principles", "Benefits", "Modern Science"]
+    },
+    { name: "Product Range", hasDropdown: false },
+    { name: "Online Consultation", hasDropdown: false },
+    { name: "About Us", hasDropdown: false },
+    { name: "Contact Us", hasDropdown: false }
+  ];
+
+  const actionButtons = [
+    { icon: MapPin, text: "Find Store" },
+    { icon: Truck, text: "Free Delivery" },
+    { icon: ShoppingBag, text: "Shop Online" },
+    { icon: User, text: "Sign up / Login" }
+  ];
 
   return (
-    <header className="bg-gradient-to-b from-white to-green-50/30 backdrop-blur-sm shadow-xl sticky top-0 z-50 border-b border-green-200/50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Top Bar */}
-        <div className="flex justify-between items-center py-2 text-sm border-b border-green-200/50">
-          <div className="flex items-center space-x-4">
-            <div className="flex items-center space-x-2 text-green-700 group cursor-pointer">
-              <Leaf className="h-3 w-3 transition-transform duration-300 group-hover:rotate-12" />
-              <span className="font-medium group-hover:text-green-800 transition-colors duration-300 text-xs">
-                5000+ Years of Ancient Wisdom Since Vedic Times
+    <div className="bg-white shadow-lg relative z-50">
+      {/* Compact Top Bar */}
+      <div className="bg-gradient-to-r from-teal-50 to-emerald-50 border-b border-teal-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-8 text-xs">
+            <div className="flex items-center space-x-4">
+              <span className="text-teal-700 font-medium flex items-center space-x-1">
+                <span className="text-yellow-500">✨</span>
+                <span>5000+ Years of Ancient Wisdom</span>
+              </span>
+              <div className="flex items-center">
+                {[...Array(5)].map((_, i) => (
+                  <span key={i} className="text-yellow-500 text-xs">⭐</span>
+                ))}
+              </div>
+            </div>
+            <div className="flex items-center space-x-4">
+              <span className="text-teal-800 font-semibold hidden sm:block">Rasayan Ayurveda Naturals</span>
+              <span className="text-teal-700 font-medium flex items-center space-x-1">
+                <Phone className="w-3 h-3" />
+                <span>1800-120-RASA</span>
               </span>
             </div>
-            <div className="hidden lg:flex items-center space-x-1 text-amber-600">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="h-3 w-3 fill-current" />
-              ))}
-              
-            </div>
-          </div>
-          <div className="flex items-center space-x-4">
-            <span className="font-bold text-green-800 tracking-wide text-sm">Gaurav Ayurveda Naturals Pvt. Ltd.</span>
-            <div className="flex items-center space-x-2 bg-gradient-to-r from-green-100 to-emerald-100 px-3 py-1 rounded-full border border-green-200 hover:from-green-200 hover:to-emerald-200 transition-all duration-300 cursor-pointer group">
-              <Phone className="h-3 w-3 text-green-600 group-hover:animate-pulse" />
-              <span className="font-bold text-green-800 group-hover:text-green-900 transition-colors text-xs">1800-120-AYUR</span>
-            </div>
           </div>
         </div>
+      </div>
 
-        {/* Main Header */}
-        <div className="flex justify-between items-center py-3">
-          {/* Logo */}
-          <div className="flex items-center group cursor-pointer">
-            <div className="relative bg-gradient-to-br from-green-600 via-emerald-600 to-green-700 p-2.5 rounded-xl mr-3 shadow-lg transform transition-all duration-500 group-hover:scale-105">
-              <Leaf className="h-6 w-6 text-white transition-transform duration-500 group-hover:rotate-12" />
+      {/* Compact Main Navbar */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
+          {/* Compact Logo Section */}
+          <div className="flex items-center space-x-2 group cursor-pointer">
+            <div className="relative">
+              <div className="w-10 h-10 bg-gradient-to-br from-teal-600 to-emerald-600 rounded-xl flex items-center justify-center shadow-md group-hover:shadow-teal-300/30 transition-all duration-300 group-hover:scale-105">
+                <Leaf className="w-6 h-6 text-white group-hover:rotate-12 transition-transform duration-300" />
+              </div>
+              <div className="absolute -top-0.5 -right-0.5 w-3 h-3 bg-yellow-400 rounded-full opacity-80 animate-pulse"></div>
             </div>
-            <div className="transition-transform duration-300 group-hover:translate-x-1">
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-green-600 via-emerald-600 to-green-800 bg-clip-text text-transparent group-hover:from-green-700 group-hover:via-emerald-700 group-hover:to-green-900 transition-all duration-300">
-                Gaurav Ayurveda Naturals
-              </h1>
-              <p className="text-xs text-green-600 font-medium tracking-wide group-hover:text-green-700 transition-colors duration-300">
-                Ancient Healing • Modern Science • Trusted Wellness
-              </p>
+            <div className="flex flex-col">
+              <span className="text-lg font-bold bg-gradient-to-r from-teal-700 to-emerald-700 bg-clip-text text-transparent">
+                Rasayan Ayurveda
+              </span>
+              <span className="text-xs text-teal-600 tracking-wide font-medium hidden sm:block">
+                Ancient Healing • Modern Science
+              </span>
             </div>
           </div>
 
-          {/* Enhanced Search Bar */}
-          <div className="flex-1 max-w-md mx-6">
-            <div className={`relative transform transition-all duration-300 ${isSearchFocused ? 'scale-102' : ''}`}>
+          {/* Compact Search Bar */}
+          <div className="hidden md:flex flex-1 max-w-sm mx-6">
+            <div className="relative w-full">
               <input
                 type="text"
-                placeholder="Search by medicine name, symptoms..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                onFocus={() => setIsSearchFocused(true)}
-                onBlur={() => setIsSearchFocused(false)}
-                className="relative w-full px-4 py-2.5 border-2 border-green-300 rounded-full focus:ring-2 focus:ring-green-500/30 focus:border-green-500 bg-white/90 backdrop-blur-sm transition-all duration-300 shadow-md hover:shadow-lg text-gray-700 placeholder-gray-500 text-sm"
+                placeholder="Search medicines..."
+                className="w-full pl-4 pr-10 py-2 border border-teal-200 rounded-full focus:border-teal-500 focus:outline-none transition-colors duration-300 bg-teal-50/30 text-sm"
               />
-              <button className="absolute right-1 top-1/2 transform -translate-y-1/2 px-4 py-1.5 bg-gradient-to-r from-green-600 via-emerald-600 to-green-700 text-white rounded-full hover:from-green-700 hover:via-emerald-700 hover:to-green-800 transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 active:scale-95">
-                <Search className="h-4 w-4" />
+              <button className="absolute right-1 top-1/2 transform -translate-y-1/2 w-7 h-7 bg-gradient-to-r from-teal-600 to-emerald-600 rounded-full flex items-center justify-center hover:from-teal-700 hover:to-emerald-700 transition-all duration-300">
+                <Search className="w-3 h-3 text-white" />
               </button>
             </div>
           </div>
 
-          {/* Enhanced Action Buttons */}
-          <div className="flex items-center space-x-2">
-            <button className="group flex items-center space-x-1.5 text-green-700 hover:text-green-800 transition-all duration-300 bg-gradient-to-r from-green-50 to-emerald-50 px-3 py-2 rounded-full hover:from-green-100 hover:to-emerald-100 border border-green-200 hover:border-green-300 shadow-sm hover:shadow-md transform hover:scale-105">
-              <MapPin className="h-3.5 w-3.5 group-hover:animate-bounce" />
-              <span className="text-xs font-medium hidden lg:inline">Find Store</span>
-            </button>
-            
-            <button className="group flex items-center space-x-1.5 text-green-700 hover:text-green-800 transition-all duration-300 bg-gradient-to-r from-green-50 to-emerald-50 px-3 py-2 rounded-full hover:from-green-100 hover:to-emerald-100 border border-green-200 hover:border-green-300 shadow-sm hover:shadow-md transform hover:scale-105">
-              <Truck className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform duration-300" />
-              <span className="text-xs font-medium hidden lg:inline">Free Delivery</span>
-            </button>
-            
-            <button className="group flex items-center space-x-1.5 text-green-700 hover:text-green-800 transition-all duration-300 bg-gradient-to-r from-green-50 to-emerald-50 px-3 py-2 rounded-full hover:from-green-100 hover:to-emerald-100 border border-green-200 hover:border-green-300 shadow-sm hover:shadow-md transform hover:scale-105">
-              <Package className="h-3.5 w-3.5 group-hover:rotate-12 transition-transform duration-300" />
-              <span className="text-xs font-medium hidden lg:inline">Shop Online</span>
+          {/* Compact Action Buttons - Fixed Layout */}
+          <div className="hidden lg:flex items-center space-x-1">
+            {actionButtons.map((button, index) => {
+              const IconComponent = button.icon;
+              return (
+                <button
+                  key={button.text}
+                  className="flex items-center space-x-1 px-3 py-2 text-teal-700 hover:text-teal-800 hover:bg-teal-50 rounded-lg transition-all duration-300 group text-xs font-medium whitespace-nowrap"
+                >
+                  <IconComponent className="w-4 h-4 group-hover:scale-110 transition-transform duration-300" />
+                  <span className="hidden xl:block">{button.text}</span>
+                </button>
+              );
+            })}
+
+            {/* Cart with badge */}
+            <button className="relative p-2 text-teal-700 hover:text-teal-800 hover:bg-teal-50 rounded-lg transition-all duration-300">
+              <ShoppingBag className="w-4 h-4" />
+              <span className="absolute -top-1 -right-1 w-4 h-4 bg-gradient-to-r from-yellow-400 to-yellow-500 text-white text-xs rounded-full flex items-center justify-center font-bold">
+                0
+              </span>
             </button>
 
-            <button className="group flex items-center space-x-1.5 text-green-700 hover:text-white transition-all duration-300 font-medium bg-gradient-to-r from-green-100 to-emerald-100 px-4 py-2 rounded-full hover:from-green-600 hover:to-emerald-600 border border-green-300 hover:border-green-600 shadow-sm hover:shadow-md transform hover:scale-105">
-              <User className="h-3.5 w-3.5 group-hover:scale-110 transition-transform duration-300" />
-              <span className="text-xs hidden md:inline">Sign up / Login</span>
+            {/* Wishlist */}
+            <button className="p-2 text-teal-700 hover:text-teal-800 hover:bg-teal-50 rounded-lg transition-all duration-300">
+              <Heart className="w-4 h-4" />
             </button>
+          </div>
 
-            <button className="group relative p-2.5 text-green-700 hover:text-white transition-all duration-300 bg-gradient-to-r from-green-50 to-emerald-50 rounded-full hover:from-green-600 hover:to-emerald-600 border border-green-200 hover:border-green-600 shadow-sm hover:shadow-md transform hover:scale-110">
-              <ShoppingCart className="h-4 w-4 group-hover:animate-pulse" />
-              {cartCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold shadow-md animate-pulse border border-white">
-                  {cartCount}
-                </span>
-              )}
-            </button>
-
-            <button className="group p-2.5 text-green-700 hover:text-red-500 transition-all duration-300 bg-gradient-to-r from-green-50 to-emerald-50 rounded-full hover:from-red-50 hover:to-pink-50 border border-green-200 hover:border-red-300 shadow-sm hover:shadow-md transform hover:scale-110">
-              <Heart className="h-4 w-4 group-hover:fill-current group-hover:animate-pulse" />
+          {/* Mobile menu button */}
+          <div className="lg:hidden">
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="p-2 rounded-lg text-teal-700 hover:text-teal-800 hover:bg-teal-50 transition-all duration-300"
+            >
+              {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
         </div>
 
-        {/* Enhanced Navigation */}
-        <nav className="border-t border-green-200/50 bg-gradient-to-r from-green-50/30 to-emerald-50/30">
-          <div className="flex justify-center space-x-1 py-2.5">
-            <div className="relative group">
-              <button className="text-green-700 hover:text-green-800 transition-all duration-300 font-medium py-2 px-4 rounded-lg hover:bg-gradient-to-r hover:from-green-100 hover:to-emerald-100 transform hover:scale-105 border border-transparent hover:border-green-200 text-sm">
-                About AyurVeda Naturals
-              </button>
-              <div className="absolute top-full left-0 mt-1 w-56 bg-white/95 backdrop-blur-md shadow-2xl rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50 border border-green-200">
-                <div className="py-2">
-                  <a href="#" className="block px-4 py-2 text-sm text-green-700 hover:bg-gradient-to-r hover:from-green-50 hover:to-emerald-50 hover:text-green-800 transition-all duration-300 rounded-lg mx-2">Our Heritage</a>
-                  <a href="#" className="block px-4 py-2 text-sm text-green-700 hover:bg-gradient-to-r hover:from-green-50 hover:to-emerald-50 hover:text-green-800 transition-all duration-300 rounded-lg mx-2">Research & Development</a>
-                  <a href="#" className="block px-4 py-2 text-sm text-green-700 hover:bg-gradient-to-r hover:from-green-50 hover:to-emerald-50 hover:text-green-800 transition-all duration-300 rounded-lg mx-2">Quality Assurance</a>
-                  <a href="#" className="block px-4 py-2 text-sm text-green-700 hover:bg-gradient-to-r hover:from-green-50 hover:to-emerald-50 hover:text-green-800 transition-all duration-300 rounded-lg mx-2">Manufacturing</a>
-                  <a href="#" className="block px-4 py-2 text-sm text-green-700 hover:bg-gradient-to-r hover:from-green-50 hover:to-emerald-50 hover:text-green-800 transition-all duration-300 rounded-lg mx-2">Traditional Methods</a>
-                  <a href="#" className="block px-4 py-2 text-sm text-green-700 hover:bg-gradient-to-r hover:from-green-50 hover:to-emerald-50 hover:text-green-800 transition-all duration-300 rounded-lg mx-2">Global Presence</a>
-                  <a href="#" className="block px-4 py-2 text-sm text-green-700 hover:bg-gradient-to-r hover:from-green-50 hover:to-emerald-50 hover:text-green-800 transition-all duration-300 rounded-lg mx-2">Wellness Centers</a>
-                </div>
-              </div>
-            </div>
-            
-            <div className="relative group">
-              <button className="text-green-700 hover:text-green-800 transition-all duration-300 font-medium py-2 px-4 rounded-lg hover:bg-gradient-to-r hover:from-green-100 hover:to-emerald-100 transform hover:scale-105 border border-transparent hover:border-green-200 text-sm">
-                About Ayurveda
-              </button>
-              <div className="absolute top-full left-0 mt-1 w-56 bg-white/95 backdrop-blur-md shadow-2xl rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50 border border-green-200">
-                <div className="py-2">
-                  <a href="#" className="block px-4 py-2 text-sm text-green-700 hover:bg-gradient-to-r hover:from-green-50 hover:to-emerald-50 hover:text-green-800 transition-all duration-300 rounded-lg mx-2">What is Ayurveda</a>
-                  <a href="#" className="block px-4 py-2 text-sm text-green-700 hover:bg-gradient-to-r hover:from-green-50 hover:to-emerald-50 hover:text-green-800 transition-all duration-300 rounded-lg mx-2">Ayurveda vs Modern Medicine</a>
-                  <a href="#" className="block px-4 py-2 text-sm text-green-700 hover:bg-gradient-to-r hover:from-green-50 hover:to-emerald-50 hover:text-green-800 transition-all duration-300 rounded-lg mx-2">Natural & Effective</a>
-                  <a href="#" className="block px-4 py-2 text-sm text-green-700 hover:bg-gradient-to-r hover:from-green-50 hover:to-emerald-50 hover:text-green-800 transition-all duration-300 rounded-lg mx-2">Principles of Healing</a>
-                  <a href="#" className="block px-4 py-2 text-sm text-green-700 hover:bg-gradient-to-r hover:from-green-50 hover:to-emerald-50 hover:text-green-800 transition-all duration-300 rounded-lg mx-2">Frequently Asked Questions</a>
-                </div>
-              </div>
-            </div>
+        {/* Compact Navigation Menu with Dropdowns */}
+        <div className="hidden lg:block border-t border-teal-100">
+          <div className="flex justify-center items-center space-x-6 py-3">
+            {mainNavItems.map((item, index) => (
+              <div
+                key={item.name}
+                className="relative group"
+                onMouseEnter={() => item.hasDropdown && setActiveDropdown(item.name)}
+                onMouseLeave={() => setActiveDropdown(null)}
+              >
+                <a
+                  href="#"
+                  className="relative text-teal-700 hover:text-teal-900 font-medium transition-all duration-300 py-2 text-sm flex items-center space-x-1"
+                >
+                  <span>{item.name}</span>
+                  {item.hasDropdown && (
+                    <ChevronDown className={`w-3 h-3 transition-transform duration-300 ${activeDropdown === item.name ? 'rotate-180' : ''
+                      }`} />
+                  )}
+                </a>
+                <div className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-teal-600 to-emerald-600 group-hover:w-full group-hover:left-0 transition-all duration-300"></div>
 
-            <div className="relative group">
-              <button className="text-green-700 hover:text-green-800 transition-all duration-300 font-medium py-2 px-4 rounded-lg hover:bg-gradient-to-r hover:from-green-100 hover:to-emerald-100 transform hover:scale-105 border border-transparent hover:border-green-200 text-sm">
-                Product Range
-              </button>
-              <div className="absolute top-full left-0 mt-1 w-64 bg-white/95 backdrop-blur-md shadow-2xl rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50 border border-green-200">
-                <div className="py-2">
-                  <a href="#" className="block px-4 py-2 text-sm text-green-700 hover:bg-gradient-to-r hover:from-green-50 hover:to-emerald-50 hover:text-green-800 transition-all duration-300 rounded-lg mx-2">Premium Herbal Formulations</a>
-                  <a href="#" className="block px-4 py-2 text-sm text-green-700 hover:bg-gradient-to-r hover:from-green-50 hover:to-emerald-50 hover:text-green-800 transition-all duration-300 rounded-lg mx-2">Ayurvedic Tablets</a>
-                  <a href="#" className="block px-4 py-2 text-sm text-green-700 hover:bg-gradient-to-r hover:from-green-50 hover:to-emerald-50 hover:text-green-800 transition-all duration-300 rounded-lg mx-2">Herbal Combinations</a>
-                  <a href="#" className="block px-4 py-2 text-sm text-green-700 hover:bg-gradient-to-r hover:from-green-50 hover:to-emerald-50 hover:text-green-800 transition-all duration-300 rounded-lg mx-2">Classical Medicines</a>
-                  <a href="#" className="block px-4 py-2 text-sm text-green-700 hover:bg-gradient-to-r hover:from-green-50 hover:to-emerald-50 hover:text-green-800 transition-all duration-300 rounded-lg mx-2">Herbal Extracts</a>
-                  <a href="#" className="block px-4 py-2 text-sm text-green-700 hover:bg-gradient-to-r hover:from-green-50 hover:to-emerald-50 hover:text-green-800 transition-all duration-300 rounded-lg mx-2">Ayurvedic Oils</a>
-                  <a href="#" className="block px-4 py-2 text-sm text-green-700 hover:bg-gradient-to-r hover:from-green-50 hover:to-emerald-50 hover:text-green-800 transition-all duration-300 rounded-lg mx-2">Wellness Tonics</a>
-                </div>
+                {/* Dropdown Menu */}
+                {item.hasDropdown && (
+                  <div className={`absolute top-full left-0 mt-1 w-56 bg-white rounded-lg shadow-xl border border-teal-100 py-2 transition-all duration-300 ${activeDropdown === item.name ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
+                    }`}>
+                    {item.items.map((dropdownItem, idx) => (
+                      <a
+                        key={dropdownItem}
+                        href="#"
+                        className="block px-4 py-2 text-sm text-teal-700 hover:text-teal-900 hover:bg-teal-50 transition-colors duration-200"
+                      >
+                        {dropdownItem}
+                      </a>
+                    ))}
+                  </div>
+                )}
               </div>
-            </div>
-
-            <div className="relative group">
-              <button className="text-green-700 hover:text-green-800 transition-all duration-300 font-medium py-2 px-4 rounded-lg hover:bg-gradient-to-r hover:from-green-100 hover:to-emerald-100 transform hover:scale-105 border border-transparent hover:border-green-200 text-sm">
-                Online Consultation
-              </button>
-              <div className="absolute top-full left-0 mt-1 w-48 bg-white/95 backdrop-blur-md shadow-2xl rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50 border border-green-200">
-                <div className="py-2">
-                  <a href="#" className="block px-4 py-2 text-sm text-green-700 hover:bg-gradient-to-r hover:from-green-50 hover:to-emerald-50 hover:text-green-800 transition-all duration-300 rounded-lg mx-2">Free Consultation</a>
-                  <a href="#" className="block px-4 py-2 text-sm text-green-700 hover:bg-gradient-to-r hover:from-green-50 hover:to-emerald-50 hover:text-green-800 transition-all duration-300 rounded-lg mx-2">Expert Consultation</a>
-                </div>
-              </div>
-            </div>
-
-            <button className="text-green-700 hover:text-green-800 transition-all duration-300 font-medium py-2 px-4 rounded-lg hover:bg-gradient-to-r hover:from-green-100 hover:to-emerald-100 transform hover:scale-105 border border-transparent hover:border-green-200 text-sm">About Us</button>
-            <button className="text-green-700 hover:text-green-800 transition-all duration-300 font-medium py-2 px-4 rounded-lg hover:bg-gradient-to-r hover:from-green-100 hover:to-emerald-100 transform hover:scale-105 border border-transparent hover:border-green-200 text-sm">Contact Us</button>
+            ))}
           </div>
-        </nav>
+        </div>
+
+        {/* Mobile Navigation */}
+        <div className={`lg:hidden overflow-hidden transition-all duration-300 ${isMenuOpen ? 'max-h-screen pb-4' : 'max-h-0'}`}>
+          {/* Mobile Search */}
+          <div className="mt-3 mb-4">
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="Search medicines..."
+                className="w-full pl-4 pr-10 py-2 border border-teal-200 rounded-full focus:border-teal-500 focus:outline-none transition-colors duration-300 bg-teal-50/30 text-sm"
+              />
+              <button className="absolute right-1 top-1/2 transform -translate-y-1/2 w-7 h-7 bg-gradient-to-r from-teal-600 to-emerald-600 rounded-full flex items-center justify-center">
+                <Search className="w-3 h-3 text-white" />
+              </button>
+            </div>
+          </div>
+
+          {/* Mobile Menu Items */}
+          <div className="space-y-1">
+            {mainNavItems.map((item) => (
+              <a
+                key={item.name}
+                href="#"
+                className="block px-4 py-2 text-teal-700 hover:text-teal-900 hover:bg-teal-50 rounded-lg transition-all duration-300 font-medium text-sm"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {item.name}
+              </a>
+            ))}
+          </div>
+
+          {/* Mobile Action Buttons - Fixed Grid Layout */}
+          <div className="mt-4 grid grid-cols-2 gap-2">
+            {actionButtons.map((button) => {
+              const IconComponent = button.icon;
+              return (
+                <button
+                  key={button.text}
+                  className="flex items-center justify-center space-x-2 px-3 py-2 bg-gradient-to-r from-teal-600 to-emerald-600 text-white rounded-lg hover:from-teal-700 hover:to-emerald-700 transition-all duration-300 text-xs font-medium"
+                >
+                  <IconComponent className="w-4 h-4" />
+                  <span>{button.text}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
       </div>
-    </header>
+    </div>
   );
-}
+};
+
+export default RasayanNavbar;

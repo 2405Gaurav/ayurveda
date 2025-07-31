@@ -5,7 +5,6 @@ import { Search, ShoppingCart, Leaf, Heart, Star, User } from 'lucide-react';
 
 // Mock data for demonstration
 const backgroundImages = [
-  "https://images.unsplash.com/photo-1544967882-63a31b3c7b62?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
   "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
 ];
 
@@ -100,34 +99,77 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Background with sacred geometry overlay */}
-        <div className="absolute inset-0">
-          <div 
-            className="absolute inset-0 bg-cover bg-center transition-opacity duration-2000"
+       <div className="absolute inset-0">
+  <div
+    className="absolute inset-0 bg-cover bg-center transition-opacity duration-2000"
+    style={{
+      backgroundImage: `url(${backgroundImages[currentImageIndex]})`,
+      filter: 'brightness(0.4) saturate(1.3) contrast(1.1)'
+    }}
+  />
+  <div className="absolute inset-0 bg-gradient-to-br from-teal-900/70 via-emerald-900/60 to-teal-800/70"></div>
+  
+  {/* Enhanced Sacred Geometry Overlay */}
+  <div className="absolute inset-0 flex items-center justify-center opacity-70">
+    <svg className="w-96 h-96" viewBox="0 0 400 400">
+      {/* Sri Yantra inspired pattern with enhanced visibility */}
+      <g className="text-amber-200" fill="none" stroke="currentColor" strokeWidth="1.5">
+        {[...Array(9)].map((_, i) => (
+          <polygon
+            key={i}
+            points={`200,${50 + i * 15} ${350 - i * 15},${300 + i * 10} ${50 + i * 15},${300 + i * 10}`}
+            className="animate-pulse drop-shadow-lg"
             style={{ 
-              backgroundImage: `url(${backgroundImages[currentImageIndex]})`,
-              filter: 'brightness(0.3) saturate(1.2)'
+              animationDelay: `${i * 0.5}s`,
+              filter: 'drop-shadow(0 0 4px rgba(251, 191, 36, 0.6))'
             }}
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-teal-900/80 via-emerald-900/70 to-teal-800/80"></div>
-          
-          {/* Sacred Geometry Overlay */}
-          <div className="absolute inset-0 flex items-center justify-center opacity-20">
-            <svg className="w-96 h-96" viewBox="0 0 400 400">
-              {/* Sri Yantra inspired pattern */}
-              <g className="text-amber-300" fill="none" stroke="currentColor" strokeWidth="1">
-                {[...Array(9)].map((_, i) => (
-                  <polygon
-                    key={i}
-                    points={`200,${50 + i * 15} ${350 - i * 15},${300 + i * 10} ${50 + i * 15},${300 + i * 10}`}
-                    className="animate-pulse"
-                    style={{ animationDelay: `${i * 0.5}s` }}
-                  />
-                ))}
-              </g>
-              <circle cx="200" cy="200" r="150" fill="none" stroke="currentColor" strokeWidth="2" className="text-amber-400 opacity-60"/>
-            </svg>
-          </div>
-        </div>
+        ))}
+      </g>
+      
+      {/* Enhanced outer circle with glow effect */}
+      <circle 
+        cx="200" 
+        cy="200" 
+        r="150" 
+        fill="none" 
+        stroke="currentColor" 
+        strokeWidth="3" 
+        className="text-amber-300 opacity-80 drop-shadow-lg"
+        style={{
+          filter: 'drop-shadow(0 0 8px rgba(251, 191, 36, 0.8))'
+        }}
+      />
+      
+      {/* Additional inner sacred geometry elements */}
+      <circle 
+        cx="200" 
+        cy="200" 
+        r="100" 
+        fill="none" 
+        stroke="currentColor" 
+        strokeWidth="2" 
+        className="text-amber-400 opacity-60 animate-pulse"
+        style={{
+          animationDelay: '1s',
+          filter: 'drop-shadow(0 0 6px rgba(251, 191, 36, 0.5))'
+        }}
+      />
+      
+      {/* Central dot with enhanced glow */}
+      <circle 
+        cx="200" 
+        cy="200" 
+        r="3" 
+        fill="currentColor" 
+        className="text-amber-100 opacity-90"
+        style={{
+          filter: 'drop-shadow(0 0 12px rgba(251, 191, 36, 1))'
+        }}
+      />
+    </svg>
+  </div>
+</div>
 
         {/* Floating Search Widget */}
         <div className="absolute top-8 right-8 z-20">
@@ -161,27 +203,24 @@ export default function Home() {
         </div>
 
         {/* Hero Content */}
-        <div className="relative z-10 text-center text-white max-w-5xl mx-auto px-6">
-          <div className="mb-8">
-            <div className="flex items-center justify-center mb-6">
-              <div className="w-16 h-16 rounded-full bg-gradient-to-r from-amber-400 to-yellow-500 flex items-center justify-center mr-4">
-                <Leaf className="h-8 w-8 text-white" />
-              </div>
-              <div className="text-left">
-                <h1 className="text-3xl font-light text-amber-300 tracking-wider">RASAYAN</h1>
-                <p className="text-sm text-white/80 tracking-[0.2em]">AYURVEDA</p>
-              </div>
-            </div>
-          </div>
-          
-          <h2 className="text-6xl font-light mb-6 leading-tight">
+        <div className="relative z-10 text-center text-white max-w-5xl mx-auto px-6 flex flex-col items-center justify-center min-h-screen">
+          {/* Title above symbol */}
+          <h2 className="text-6xl font-light mb-16 leading-tight">
             Ancient Wisdom<br/>
             <span className="text-amber-300 font-normal">Modern Healing</span>
           </h2>
-          <p className="text-xl mb-12 text-white/90 max-w-3xl mx-auto font-light leading-relaxed">
-            Experience 5000 years of Ayurvedic tradition through scientifically crafted formulations that harmonize body, mind, and spirit
+          
+          {/* Symbol space - the sacred geometry from the background will be visible here */}
+          <div className="mb-16 h-32">
+            {/* This space allows the background sacred geometry symbol to be fully visible */}
+          </div>
+          
+          {/* Description below symbol */}
+          <p className="text-lg mb-16 text-white/90 max-w-2xl mx-auto font-light leading-relaxed">
+            5000 years of Ayurvedic tradition in scientifically crafted formulations
           </p>
           
+          {/* Buttons at bottom */}
           <div className="flex items-center justify-center space-x-8">
             <button className="px-8 py-4 bg-gradient-to-r from-teal-600 to-emerald-600 text-white rounded-full font-medium hover:from-teal-700 hover:to-emerald-700 transition-all duration-300 transform hover:scale-105 shadow-lg">
               Explore Products
