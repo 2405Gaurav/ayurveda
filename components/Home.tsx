@@ -221,14 +221,14 @@ export default function Home() {
           </p>
           
           {/* Buttons at bottom */}
-          <div className="flex items-center justify-center space-x-8">
+          {/* <div className="flex items-center justify-center space-x-8">
             <button className="px-8 py-4 bg-gradient-to-r from-teal-600 to-emerald-600 text-white rounded-full font-medium hover:from-teal-700 hover:to-emerald-700 transition-all duration-300 transform hover:scale-105 shadow-lg">
               Explore Products
             </button>
             <button className="px-8 py-4 border-2 border-white/30 text-white rounded-full font-medium hover:bg-white/10 transition-all duration-300 backdrop-blur-sm">
               Take Assessment
             </button>
-          </div>
+          </div> */}
         </div>
       </section>
 
